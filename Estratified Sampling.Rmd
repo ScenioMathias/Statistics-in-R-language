@@ -1,0 +1,35 @@
+Estratified Sampling
+
+To obtain a stratified sample, we will need to install and import the 'Sampling' library.
+```{r}
+#install.packages("sampling")
+library("sampling")
+```
+
+Analyzing the scenario:
+
+We will use the Iris dataset, which contains 150 values, divided into 3 species equally, meaning 50 values of each species.
+
+To obtain a stratified sample, we must take an equal proportion of data for each species. Let's take 25 values from each species.
+
+We will use the "Strata" method from the "sampling" library to separate equal quantities of each species from the Iris dataset. In this method, we will use the 'srswor' method, which performs a Simple Random Sampling Without Replacement after separating the classes.
+```{r}
+proporcao = 25
+amostra = strata(data=iris, stratanames=c("Species"), size=c(rep(proporcao,3)), method="srswor")
+
+summary(amostra)
+```
+See above that the variables were extracted in the requested quantity.
+
+Now let's analyze another dataset.
+```{r}
+infert
+summary(infert)
+```
+It is noted that this dataset also has 3 variable classes but with distinct quantities. In case we intend to obtain a stratified sample with quantities equivalent to the dataset, we will obtain values according to the percentage. See below for an example.
+```{r}
+amostra = strata(data=infert, stratanames = c('education'),size=c(5,48,47), method='srswor')
+amostra
+summary(amostra)
+```
+

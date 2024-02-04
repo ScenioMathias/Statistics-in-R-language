@@ -1,0 +1,19 @@
+Small and Large Samples
+
+It is possible that small samples may have more variations in the mean values when compared to large samples. Here's an example.
+
+Small Sample - With values from 1 to 6, repeated 6 times. Replace = True. Mean fluctuating between 2 and 5.
+```{r}
+x = sample(1:6,6,replace = T)
+mean(x)
+```
+Large Sample - With values from 1 to 6, repeated 10000 times. Replace = True. Mean fluctuating between 3.4 to 3.5.
+```{r}
+x = sample(1:6,10000,replace = T)
+mean(x)
+```
+
+Notice that the large sample had a much smaller fluctuation.
+
+That's because it has greater precision of the data, reduced randomness, and stability. 
+

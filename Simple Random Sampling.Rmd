@@ -1,0 +1,56 @@
+
+Simple Random Sampling
+
+Generating 150 samples of values 0 and 1 with a repetition parameter, and setting a 50% probability for each variable.
+```{r}
+amostra=sample(c(0,1),150,replace=TRUE, prob=c(0.5,0.5))
+amostra
+summary(as.factor(amostra))
+```
+
+Changing the probability of the variables, increasing the percentage for variable '0'. Setting the display to 70%.
+```{r}
+amostra = sample(c(0,1),150,replace=TRUE, prob=c(0.7,0.3))
+amostra
+summary(as.factor(amostra))
+```
+Notice that there was an increase in the probability adjustment made; now, variable '0' is being displayed more often.
+
+Let's analyze the same initial scenario, but now with 1000 cases instead of just 150.
+```{r}
+amostra = sample(c(0,1),1000,replace = TRUE, prob = c(0.5,0.5))
+amostra
+summary(as.factor(amostra))
+```
+
+
+Now let's explore other contexts.
+
+If you need random data from a specific database you're working with, you can set up a random sequence of indices to apply to the dataset search filter. Let's exemplify below.
+```{r}
+amostra = sample(c(0,1),150,replace = TRUE, prob = c(0.7,0.3))
+summary(as.factor(amostra))
+```
+We have created a list of 150 indices with random values of 0 and 1, with a probability of 70% for the value 0 and 30% for the value 1. Now, we will move on to the next step.
+
+Let's develop a variable that will receive the value of the position that satisfies the condition that the sample value is equal to 1. Below is the result.
+```{r}
+amostrairis = iris[amostra==1,]
+amostrairis
+```
+Therefore, only the rows of the iris dataset whose sample database row value resulted in 1 will be displayed. This will result in the automatic display of 48 values from the iris dataset.
+
+Okay. But if I run this process again, I get a new random combination of 48 rows. What do I need to do to save this data and prevent it from being changed if I run it again? Below is a demonstration of how to "save" the generated random values.
+
+Using the "set.seed" function in R, you can set a random number generation seed. This ensures that when you run the code again, the results will be reproducible, following the same sequence of random values defined by the seed.
+
+```{r}
+set.seed(1)
+sample(c(1000),1)
+```
+Now let's test again to see if the value will be the same.
+```{r}
+set.seed(1)
+sample(c(1000),1)
+```
+

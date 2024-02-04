@@ -1,0 +1,24 @@
+Systematic Sampling
+
+In this sampling method, we need to use the 'TeachingSampling' library.
+```{r}
+#install.packages("TeachingSampling")
+library("TeachingSampling")
+```
+
+Now let's generate a data sample with 150 values, separated by 10. To do this, we will use the command S.SY from the 'TeachingSampling' library.
+```{r}
+amostra = S.SY(150,10)
+amostra
+dim(amostra)
+```
+As we can see, the function generated a total of 15 rows, with each value progressing by 10.
+
+Imagine you want to obtain a random sample of values from a dataset. One way to do this would be to search for the values by the indices of the dataset, using the randomly obtained values from the array above as parameters. Below is an example with the Iris dataset.
+```{r}
+amostrairis = iris[amostra,]
+amostrairis
+dim(amostrairis)
+```
+
+

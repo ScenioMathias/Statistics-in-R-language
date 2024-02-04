@@ -1,0 +1,50 @@
+Central Limit Theorem
+
+To begin our implementations, we will install and import the 'semTools' library.
+```{r}
+options(warn = -1)
+#install.packages('semTools')
+library(semTools)
+```
+
+Importing Data
+```{r}
+data(iris)
+```
+Defining the sample
+```{r}
+iris$Sepal.Length
+amostra = iris$Sepal.Length
+```
+Assigning values to variables
+```{r}
+mean(amostra)
+media_amostral = mean(amostra)
+sd(amostra)
+desvio_padrao_amostral = sd(amostra)
+
+```
+
+
+```{r}
+n = length(amostra)  # Tamanho da amostra
+n_amostras = 1000000   # Número de amostras a serem geradas
+
+medias_amostrais = numeric(n_amostras)  # Vetor para armazenar as médias das amostras
+
+for (i in 1:n_amostras) {
+  amostra_aleatoria = sample(amostra, n, replace = TRUE)  # Amostra aleatória com reposição
+  medias_amostrais[i] = mean(amostra_aleatoria)  # Calcula a média da amostra aleatória
+  if(i<4){
+    hist(m,breaks=50, main= paste0('Histograma',i))
+  }
+}
+
+```
+Generating graphs for visualization
+```{r}
+hist(medias_amostrais, freq = FALSE, main = "Distribuição das médias amostrais", xlab = "Média amostral")
+curve(dnorm(x, mean = media_amostral, sd = desvio_padrao_amostral/sqrt(n)), add = TRUE, col = "blue", lwd = 2)
+
+```
+

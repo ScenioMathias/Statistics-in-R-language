@@ -1,0 +1,39 @@
+Measures of Central Tendency and Variability
+
+To start, let's define our range of values. In our scenario, we will assign a range of values to the variable "player". 
+```{r}
+jogadores = c(40000,18000,12000,250000,30000,140000,300000,40000,800000)
+```
+Now we will analyze measures of central tendency and variability. Such as Mean, Median, Quartiles, and Standard Deviation.
+
+Mean
+```{r}
+mean(jogadores)
+```
+
+Median
+```{r}
+median(jogadores)
+```
+
+Quartiles
+```{r}
+quartis = quantile(jogadores)
+quartis
+```
+
+Consulting the 3rd Quartile
+```{r}
+quartis[4]
+```
+
+Standard Deviation
+```{r}
+sd(jogadores)
+```
+
+Summary
+```{r}
+summary(jogadores)
+```
+

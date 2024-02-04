@@ -1,0 +1,47 @@
+Normality Tests
+
+To analyze if the data in a sample is symmetric, i.e., if it is normal, there are several ways we can detect through consultation. This material will present some of them.
+
+Importing library
+```{r}
+library(semTools)
+```
+
+When dealing with random data, I recommend using the 'seed' command to save a preset of random data. This will allow you to perform multiple tests with the same random dataset.
+```{r}
+set.seed(1)
+```
+  
+Now let's generate a thousand normally distributed variables.
+```{r}
+x = rnorm(1000)
+```
+
+The first way to analyze if the data from a sample is normally distributed is through the QQ plot. The plot has a line which is the sketch of a normally distributed graph, and on top, we overlay the data from the vector. If the plot's drawing doesn't follow the line, it's possible that the sample data is not normally distributed.
+```{r}
+qqnorm(x)
+qqline(x)
+```
+Another approach is the Shapiro test. It considers that for a sample distribution to be normal, it should have a P-value > 0.05. In our scenario, we will use the 'shapiro.test' command, which allows for the analysis to be performed. 
+```{r}
+shapiro.test(x)
+```
+Notice that the P-value was 0.9817, above 0.05, which allows us to declare that our sample follows normality or is close to it.
+
+Another approach to analyze if the sample is normally distributed would be through the most practical way, using a histogram with a density line. By using this plot, we can have a better view of the distribution of the data.
+```{r}
+hist(x, main="")
+par(new=TRUE)
+plot(density(x), ylab= "", xlab="", axes=F, lwd=2.5)
+```
+
+Here's how the presentation of a graph that is not normally distributed would look like.
+```{r}
+m - mvrnonnorm(1000, c(1,2), matrix(c(10,2,2,5),2,2), skewness = c(5,2), kurtosis = c(3,3))
+qqnorm(m)
+qqline(m)
+hist(m, main="")
+par(new=TRUE)
+plot(density(m), ylab= "", xlab="", axes=F, lwd=2.5)
+```
+
